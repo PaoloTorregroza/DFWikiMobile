@@ -13,7 +13,6 @@ class DFWiki extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         brightness: Brightness.dark,
-        // primaryColor: Colors.white,
       ),
       home: const DFHome(),
     );
