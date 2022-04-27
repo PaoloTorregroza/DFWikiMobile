@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class TextStyles {
   static const String _fontFamily = 'Times New Roman';
+  static const String _paragraphFontFamily = 'sans-serif';
 
   static const subtitle = TextStyle(
     fontFamily: _fontFamily,
@@ -15,13 +16,13 @@ class TextStyles {
   );
 
   static const paragraphDimmed = TextStyle(
-    fontFamily: _fontFamily,
+    fontFamily: _paragraphFontFamily,
     fontSize: 12,
     color: Colors.grey,
   );
 
   static const paragraph = TextStyle(
-    fontFamily: _fontFamily,
+    fontFamily: _paragraphFontFamily,
     fontSize: 15,
   );
 }

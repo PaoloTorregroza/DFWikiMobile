@@ -1,12 +1,14 @@
 import 'dart:developer';
 
 import 'package:df_wiki/styles/text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fwfh_cached_network_image/fwfh_cached_network_image.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:dio/dio.dart';
 
 import '../api/page_response.dart';
+import '../styles/slide_animation.dart';
 
 class DFEntry extends StatefulWidget {
   const DFEntry({Key? key, required this.page}) : super(key: key);
@@ -43,12 +45,29 @@ class _DFEntryState extends State<DFEntry> {
               pageContent,
               factoryBuilder: () => DFPageFactory(),
               textStyle: TextStyles.paragraph,
+              onLoadingBuilder: (context, element, loadingProgress) => SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 2,
+                child: const CupertinoActivityIndicator(),
+              ),
               customStylesBuilder: (el) {
                 if (el.classes.contains('keyboard-key')) {
                   return {'color': 'black'};
                 }
 
                 return {'margin-left': '0', 'margin-right': '0'};
+              },
+              onTapUrl: (url) {
+                Navigator.push(
+                  context,
+                  SlideInRoute(
+                    page: DFEntry(
+                      page: url.replaceAll('/index.php/', ''),
+                    ),
+                  ),
+                );
+
+                return Future(() => false);
               },
             ),
           ),
@@ -74,7 +93,7 @@ class _DFEntryState extends State<DFEntry> {
         pageContent = html;
       });
     } catch (e) {
-      print(e);
+      log('ENTRY ERROR: $e');
     }
   }
 }
