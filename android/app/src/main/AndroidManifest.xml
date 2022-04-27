@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.df_wiki">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="df_wiki"
         android:name="${applicationName}"
