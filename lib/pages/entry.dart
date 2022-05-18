@@ -86,9 +86,8 @@ class _DFEntryState extends State<DFEntry> {
         String html = page.parse.text.content
             .replaceAll('src="/', 'src="https://dwarffortresswiki.org/')
             .replaceAll('background: white', 'background: #484444')
-            .replaceAll('width: 35%', 'width: 100%')
-            .replaceAll('width: 45%', 'width: 100%')
-            .replaceAll('width: 80%', 'width: 100%')
+            // Break html for prevent fixed widths in tables
+            .replaceAll('width', '')
             .replaceAll('margin: 1em', 'margin: 0');
         pageContent = html;
       });
