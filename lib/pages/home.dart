@@ -1,5 +1,6 @@
 import 'package:df_wiki/components/df_icon_button.dart';
 import 'package:df_wiki/components/favorite_card.dart';
+import 'package:df_wiki/components/home_slide_menu.dart';
 import 'package:df_wiki/pages/search.dart';
 import 'package:df_wiki/styles/slide_animation.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +13,15 @@ class DFHome extends StatefulWidget {
 }
 
 class DFHomeState extends State<DFHome> {
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       bottom: false,
       child: Scaffold(
+        key: _key,
+        endDrawer: const HomeSlideMenu(),
         body: Column(
           children: <Widget>[
             Container(
@@ -42,7 +47,9 @@ class DFHomeState extends State<DFHome> {
                         const Spacer(),
                         DFIconButton(
                           icon: const Icon(Icons.menu_book),
-                          onPressed: () {},
+                          onPressed: () {
+                            _key.currentState!.openEndDrawer();
+                          },
                         ),
                       ],
                     ),
