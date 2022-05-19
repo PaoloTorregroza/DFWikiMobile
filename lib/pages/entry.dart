@@ -33,11 +33,18 @@ class _DFEntryState extends State<DFEntry> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-            widget.page,
-            style: const TextStyle(fontFamily: 'Times New Roman'),
-          ),
-        ),
+            title: Text(
+              widget.page,
+              style: const TextStyle(fontFamily: 'Times New Roman'),
+            ),
+            actions: <Widget>[
+              IconButton(
+                  icon: const Icon(
+                    Icons.star_outline,
+                    size: 20.0,
+                  ),
+                  onPressed: () {})
+            ]),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: SingleChildScrollView(
