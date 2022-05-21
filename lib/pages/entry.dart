@@ -1,11 +1,13 @@
 import 'dart:developer';
 
 import 'package:df_wiki/styles/text.dart';
+import 'package:df_wiki/utils/custom_shared_preferences.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fwfh_cached_network_image/fwfh_cached_network_image.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../api/page_response.dart';
 import '../styles/slide_animation.dart';
@@ -20,6 +22,7 @@ class DFEntry extends StatefulWidget {
 }
 
 class _DFEntryState extends State<DFEntry> {
+  CustomSharedPreferences prefs = CustomSharedPreferences();
   String pageContent = '';
 
   @override
@@ -43,7 +46,9 @@ class _DFEntryState extends State<DFEntry> {
                     Icons.star_outline,
                     size: 20.0,
                   ),
-                  onPressed: () {})
+                  onPressed: () async {
+                    prefs.addEntry(widget.page);
+                  })
             ]),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:df_wiki/styles/text.dart';
+import 'package:df_wiki/utils/custom_shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 class HomeSlideMenu extends StatefulWidget {
@@ -11,6 +12,8 @@ class HomeSlideMenu extends StatefulWidget {
 }
 
 class _HomeSlideMenuState extends State<HomeSlideMenu> {
+  CustomSharedPreferences prefs = CustomSharedPreferences();
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -22,8 +25,9 @@ class _HomeSlideMenuState extends State<HomeSlideMenu> {
               'Favorites',
               style: TextStyles.subtitle,
             ),
-            onTap: () {
-              log('a');
+            onTap: () async {
+              final result = await prefs.getEntries();
+              print(result);
             },
           ),
           ListTile(
